@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Noah Nexus Protocol 2.0</title>
+<style>
+:root{
+  --gold:#c9a227;--gl:#f5d66e;--gd:#8a6e1a;
+  --b0:#0d0700;--b1:#1a0e00;--b2:#2d1a00;--b3:#120a00;
+  --t1:#f5d66e;--t2:#c9a227;--t3:#a07820;--t4:#5a4010;
+  --bd:rgba(201,162,39,0.35);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;background:var(--b0);color:var(--t1);overflow-x:hidden;}
+.page{max-width:720px;margin:0 auto;padding:20px 14px 60px;}
+.hero{background:linear-gradient(150deg,#1a0e00,#2d1a00,#1a0e00);border:1px solid var(--gold);border-radius:16px;padding:44px 20px 36px;text-align:center;margin-bottom:20px;position:relative;overflow:hidden;}
+.logo{width:76px;height:76px;border:1.5px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;background:rgba(201,162,39,0.08);}
+.logo svg{width:40px;height:40px;}
+.badge{display:inline-block;background:rgba(201,162,39,0.12);border:1px solid rgba(201,162,39,0.4);color:var(--t1);font-size:9px;letter-spacing:3px;text-transform:uppercase;padding:4px 14px;border-radius:20px;margin-bottom:12px;}
+.htitle{font-family:Georgia,serif;font-size:26px;font-weight:700;color:var(--t1);margin-bottom:4px;}
+.hver{font-family:Georgia,serif;font-size:11px;color:var(--t2);letter-spacing:4px;text-transform:uppercase;margin-bottom:18px;}
+.hline{width:80px;height:1px;background:linear-gradient(to right,transparent,var(--gold),transparent);margin:0 auto 14px;}
+.htag{font-size:13px;color:var(--t2);max-width:380px;margin:0 auto;line-height:1.7;}
+.ibox{background:linear-gradient(135deg,var(--b2),var(--b1));border:1px solid var(--gold);border-radius:12px;padding:18px 16px 20px;margin-bottom:20px;}
+.ilbl{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--t3);margin-bottom:10px;display:block;}
+.irow{display:flex;gap:8px;align-items:stretch;}
+.ipfx{font-size:20px;font-weight:700;color:var(--gold);font-family:Georgia,serif;display:flex;align-items:center;flex-shrink:0;}
+.iinput{flex:1;background:var(--b0);border:1.5px solid var(--gold);border-radius:8px;padding:11px 12px;font-size:18px;font-weight:700;color:var(--t1);font-family:Georgia,serif;outline:none;min-width:0;-webkit-appearance:none;-moz-appearance:textfield;appearance:none;}
+.iinput::-webkit-outer-spin-button,.iinput::-webkit-inner-spin-button{-webkit-appearance:none;margin:0;}
+.ibtn{background:linear-gradient(135deg,#c9a227,#8a6e1a);color:#0d0700;border:none;border-radius:8px;padding:11px 16px;font-size:13px;font-weight:700;cursor:pointer;flex-shrink:0;font-family:inherit;-webkit-tap-highlight-color:rgba(0,0,0,0);touch-action:manipulation;display:block;}
+.ihint{font-size:10px;color:var(--t4);margin-top:8px;line-height:1.5;}
+.sgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-bottom:20px;}
+.sc{background:linear-gradient(145deg,var(--b2),var(--b1));border:1px solid var(--gold);border-radius:10px;padding:16px 8px;text-align:center;}
+.slbl{font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--t3);margin-bottom:7px;}
+.sval{font-family:Georgia,serif;font-size:17px;font-weight:700;color:var(--t1);}
+.ssub{font-size:10px;color:var(--t3);margin-top:3px;}
+.sec{margin-bottom:24px;}
+.sh{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+.sh::after{content:'';flex:1;height:1px;background:linear-gradient(to right,rgba(201,162,39,0.4),transparent);}
+.st{font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--gd);white-space:nowrap;}
+.tabrow{display:flex;gap:7px;margin-bottom:12px;}
+.tb{flex:1;padding:9px 4px;border:1px solid var(--bd);border-radius:7px;background:var(--b3);color:var(--t2);font-size:13px;font-weight:500;cursor:pointer;font-family:inherit;-webkit-tap-highlight-color:rgba(0,0,0,0);touch-action:manipulation;display:block;}
+.tb.on{background:linear-gradient(135deg,#c9a227,#8a6e1a);color:#0d0700;font-weight:700;border-color:transparent;}
+.tc{display:none;}
+.tc.on{display:block;}
+.tw{border:1px solid var(--bd);border-radius:9px;overflow:hidden;overflow-x:auto;-webkit-overflow-scrolling:touch;}
+table{width:100%;border-collapse:collapse;font-size:12px;min-width:290px;}
+thead tr{background:linear-gradient(90deg,var(--b2),#3a2200);}
+thead th{color:var(--t1);font-weight:600;font-size:8px;letter-spacing:1px;text-transform:uppercase;padding:11px 9px;text-align:left;border-bottom:1px solid var(--bd);white-space:nowrap;}
+thead th:not(:first-child){text-align:right;}
+tbody tr{background:var(--b3);}
+tbody tr:nth-child(even){background:#160c00;}
+tbody td{padding:9px 9px;color:#e8c96a;border-bottom:1px solid rgba(201,162,39,0.1);}
+tbody td:not(:first-child){text-align:right;}
+tbody td:first-child{color:var(--t2);font-weight:500;}
+td.hi{color:var(--t1);font-weight:600;}
+tfoot tr{background:linear-gradient(90deg,#3a2200,var(--b2));}
+tfoot td{padding:11px 9px;color:var(--t1);font-weight:700;font-size:12px;border-top:1px solid var(--gold);}
+tfoot td:not(:first-child){text-align:right;}
+.cbox{background:var(--b3);border:1px solid var(--bd);border-radius:9px;padding:16px;}
+.crow{display:flex;align-items:center;gap:8px;margin-bottom:9px;}
+.crow:last-child{margin-bottom:0;}
+.clbl{font-size:10px;color:var(--t3);width:55px;flex-shrink:0;}
+.cbw{flex:1;height:22px;background:rgba(201,162,39,0.08);border-radius:3px;overflow:hidden;}
+.cb{height:100%;background:linear-gradient(90deg,var(--gd),var(--gold));border-radius:3px;display:flex;align-items:center;justify-content:flex-end;padding-right:7px;font-size:10px;font-weight:700;color:#0d0700;min-width:44px;}
+.steps{display:flex;flex-direction:column;}
+.step{display:flex;gap:12px;padding-bottom:18px;}
+.step:last-child{padding-bottom:0;}
+.snw{display:flex;flex-direction:column;align-items:center;flex-shrink:0;}
+.sn{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gd));color:#0d0700;font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center;font-family:Georgia,serif;}
+.sl{width:1px;flex:1;background:linear-gradient(to bottom,var(--gold),transparent);margin-top:4px;min-height:14px;}
+.step:last-child .sl{display:none;}
+.sc2{padding-top:2px;}
+.stit{font-size:13px;font-weight:600;color:var(--t1);margin-bottom:3px;}
+.sdsc{font-size:11px;color:var(--t3);line-height:1.6;}
+.fgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;}
+.fc{background:var(--b3);border:1px solid rgba(201,162,39,0.3);border-radius:9px;padding:12px;display:flex;gap:10px;}
+.fi{width:32px;height:32px;flex-shrink:0;border-radius:6px;background:rgba(201,162,39,0.12);border:1px solid rgba(201,162,39,0.2);display:flex;align-items:center;justify-content:center;}
+.fi svg{width:14px;height:14px;}
+.ftit{font-size:11px;font-weight:600;color:var(--t1);margin-bottom:3px;}
+.fdsc{font-size:10px;color:var(--t3);line-height:1.55;}
+.disc{font-size:10px;color:var(--t4);text-align:center;line-height:1.7;padding:16px 8px 0;border-top:1px solid rgba(201,162,39,0.1);margin-top:6px;}
+.foot{text-align:center;margin-top:16px;font-family:Georgia,serif;font-size:9px;color:var(--t4);letter-spacing:2px;}
+@media(max-width:400px){.htitle{font-size:21px;}.fgrid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<div class="page">
+
+<div class="hero">
+  <div class="logo">
+    <svg viewBox="0 0 42 42" fill="none">
+      <polygon points="21,2 38,11 38,31 21,40 4,31 4,11" stroke="#c9a227" stroke-width="1.5" fill="rgba(201,162,39,0.08)"/>
+      <polygon points="21,8 33,15 33,27 21,34 9,27 9,15" stroke="rgba(201,162,39,0.3)" stroke-width="0.8" fill="none"/>
+      <circle cx="21" cy="21" r="6.5" fill="rgba(201,162,39,0.18)" stroke="#f5d66e" stroke-width="1.1"/>
+      <circle cx="21" cy="21" r="2.8" fill="#c9a227"/>
+      <line x1="21" y1="2" x2="21" y2="14" stroke="#c9a227" stroke-width="1"/>
+      <line x1="21" y1="28" x2="21" y2="40" stroke="#c9a227" stroke-width="1"/>
+      <line x1="4" y1="11" x2="14" y2="17" stroke="#c9a227" stroke-width="1"/>
+      <line x1="28" y1="25" x2="38" y2="31" stroke="#c9a227" stroke-width="1"/>
+      <line x1="38" y1="11" x2="28" y2="17" stroke="#c9a227" stroke-width="1"/>
+      <line x1="14" y1="25" x2="4" y2="31" stroke="#c9a227" stroke-width="1"/>
+    </svg>
+  </div>
+  <div class="badge">Verified DeFi Protocol</div>
+  <div class="htitle">Noah Nexus Protocol</div>
+  <div class="hver">Version 2.0</div>
+  <div class="hline"></div>
+  <p class="htag">Platform staking USDT terpercaya dengan sistem auto compound — aset Anda bekerja 24 jam sehari, 7 hari seminggu, tanpa henti.</p>
+</div>
+
+<div class="ibox">
+  <span class="ilbl">Masukkan Modal Investasi Anda</span>
+  <div class="irow">
+    <span class="ipfx">$</span>
+    <input class="iinput" type="number" id="mi" value="1000" min="1"/>
+    <button class="ibtn" type="button" onclick="H()">Hitung</button>
+  </div>
+  <p class="ihint">Ketik jumlah modal dalam USD lalu tekan Hitung.</p>
+</div>
+
+<div class="sgrid">
+  <div class="sc"><div class="slbl">Modal Awal</div><div class="sval" id="s0">$1,000</div><div class="ssub">USDT</div></div>
+  <div class="sc"><div class="slbl">Return Harian</div><div class="sval">0.7%</div><div class="ssub">per hari</div></div>
+  <div class="sc"><div class="slbl">Profit 7 Hari</div><div class="sval" id="s7">$50.04</div><div class="ssub">estimasi</div></div>
+</div>
+
+<div class="sec">
+  <div class="sh"><span class="st">Proyeksi Keuntungan</span></div>
+  <div class="tabrow">
+    <button class="tb on" type="button" onclick="ST('h',this)">Harian</button>
+    <button class="tb" type="button" onclick="ST('w',this)">Mingguan</button>
+    <button class="tb" type="button" onclick="ST('m',this)">Bulanan</button>
+  </div>
+
+  <div id="t-h" class="tc on"><div class="tw"><table>
+    <thead><tr><th>Hari ke-</th><th>Saldo ($)</th><th>Bunga Hari Ini ($)</th><th>Total Profit ($)</th></tr></thead>
+    <tbody>
+      <tr><td>Hari 1</td><td class="hi" id="h1b"></td><td id="h1i"></td><td class="hi" id="h1p"></td></tr>
+      <tr><td>Hari 2</td><td class="hi" id="h2b"></td><td id="h2i"></td><td class="hi" id="h2p"></td></tr>
+      <tr><td>Hari 3</td><td class="hi" id="h3b"></td><td id="h3i"></td><td class="hi" id="h3p"></td></tr>
+      <tr><td>Hari 4</td><td class="hi" id="h4b"></td><td id="h4i"></td><td class="hi" id="h4p"></td></tr>
+      <tr><td>Hari 5</td><td class="hi" id="h5b"></td><td id="h5i"></td><td class="hi" id="h5p"></td></tr>
+      <tr><td>Hari 6</td><td class="hi" id="h6b"></td><td id="h6i"></td><td class="hi" id="h6p"></td></tr>
+      <tr><td>Hari 7</td><td class="hi" id="h7b"></td><td id="h7i"></td><td class="hi" id="h7p"></td></tr>
+    </tbody>
+    <tfoot><tr><td>Total 7 Hari</td><td id="hts"></td><td>—</td><td id="htp"></td></tr></tfoot>
+  </table></div></div>
+
+  <div id="t-w" class="tc"><div class="tw"><table>
+    <thead><tr><th>Minggu ke-</th><th>Saldo ($)</th><th>Profit Minggu Ini ($)</th><th>Total Profit ($)</th></tr></thead>
+    <tbody>
+      <tr><td>Minggu 1</td><td class="hi" id="w1b"></td><td id="w1p"></td><td class="hi" id="w1t"></td></tr>
+      <tr><td>Minggu 2</td><td class="hi" id="w2b"></td><td id="w2p"></td><td class="hi" id="w2t"></td></tr>
+      <tr><td>Minggu 3</td><td class="hi" id="w3b"></td><td id="w3p"></td><td class="hi" id="w3t"></td></tr>
+      <tr><td>Minggu 4</td><td class="hi" id="w4b"></td><td id="w4p"></td><td class="hi" id="w4t"></td></tr>
+    </tbody>
+    <tfoot><tr><td>Total 4 Minggu</td><td id="wts"></td><td>—</td><td id="wtp"></td></tr></tfoot>
+  </table></div></div>
+
+  <div id="t-m" class="tc"><div class="tw"><table>
+    <thead><tr><th>Bulan ke-</th><th>Saldo ($)</th><th>Profit Bulan Ini ($)</th><th>Total Profit ($)</th></tr></thead>
+    <tbody>
+      <tr><td>Januari</td><td class="hi" id="m0b"></td><td id="m0p"></td><td class="hi" id="m0t"></td></tr>
+      <tr><td>Februari</td><td class="hi" id="m1b"></td><td id="m1p"></td><td class="hi" id="m1t"></td></tr>
+      <tr><td>Maret</td><td class="hi" id="m2b"></td><td id="m2p"></td><td class="hi" id="m2t"></td></tr>
+      <tr><td>April</td><td class="hi" id="m3b"></td><td id="m3p"></td><td class="hi" id="m3t"></td></tr>
+      <tr><td>Mei</td><td class="hi" id="m4b"></td><td id="m4p"></td><td class="hi" id="m4t"></td></tr>
+      <tr><td>Juni</td><td class="hi" id="m5b"></td><td id="m5p"></td><td class="hi" id="m5t"></td></tr>
+      <tr><td>Juli</td><td class="hi" id="m6b"></td><td id="m6p"></td><td class="hi" id="m6t"></td></tr>
+      <tr><td>Agustus</td><td class="hi" id="m7b"></td><td id="m7p"></td><td class="hi" id="m7t"></td></tr>
+      <tr><td>September</td><td class="hi" id="m8b"></td><td id="m8p"></td><td class="hi" id="m8t"></td></tr>
+      <tr><td>Oktober</td><td class="hi" id="m9b"></td><td id="m9p"></td><td class="hi" id="m9t"></td></tr>
+      <tr><td>November</td><td class="hi" id="m10b"></td><td id="m10p"></td><td class="hi" id="m10t"></td></tr>
+      <tr><td>Desember</td><td class="hi" id="m11b"></td><td id="m11p"></td><td class="hi" id="m11t"></td></tr>
+    </tbody>
+    <tfoot><tr><td>Total 12 Bulan</td><td id="mts"></td><td>—</td><td id="mtp"></td></tr></tfoot>
+  </table></div></div>
+</div>
+
+<div class="sec">
+  <div class="sh"><span class="st">Kekuatan Auto Compound</span></div>
+  <div class="cbox">
+    <p style="font-size:11px;color:var(--t3);margin-bottom:12px;line-height:1.6;">Pertumbuhan saldo dengan sistem auto compound:</p>
+    <div class="crow"><span class="clbl">Bulan 1</span><div class="cbw"><div class="cb" id="bar1" style="width:9.7%">-</div></div></div>
+    <div class="crow"><span class="clbl">Bulan 3</span><div class="cbw"><div class="cb" id="bar3" style="width:14.7%">-</div></div></div>
+    <div class="crow"><span class="clbl">Bulan 6</span><div class="cbw"><div class="cb" id="bar6" style="width:27.7%">-</div></div></div>
+    <div class="crow"><span class="clbl">Bulan 12</span><div class="cbw"><div class="cb" id="bar12" style="width:100%">-</div></div></div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sh"><span class="st">Cara Kerja</span></div>
+  <div class="steps">
+    <div class="step"><div class="snw"><div class="sn">1</div><div class="sl"></div></div><div class="sc2"><div class="stit">Buat Wallet Digital</div><div class="sdsc">Download dan buat wallet digital terlebih dahulu, contohnya <strong style="color:var(--t1);">TokenPocket</strong>, <strong style="color:var(--t1);">Trust Wallet</strong>, atau sejenisnya. Wallet ini adalah "dompet digital" Anda untuk menyimpan USDT. Setelah itu, daftarkan wallet Anda ke platform Noah Nexus Protocol 2.0.</div></div></div>
+    <div class="step"><div class="snw"><div class="sn">2</div><div class="sl"></div></div><div class="sc2"><div class="stit">Aktifkan Staking</div><div class="sdsc">Pilih paket staking dan aktifkan. Sistem langsung bekerja — bunga 0.7% per hari otomatis ditambahkan ke modal Anda.</div></div></div>
+    <div class="step"><div class="snw"><div class="sn">3</div><div class="sl"></div></div><div class="sc2"><div class="stit">Nikmati Auto Compound</div><div class="sdsc">Bunga harian otomatis digabung ke modal sehingga bunga berikutnya makin besar. Tanpa perlu klik apapun!</div></div></div>
+    <div class="step"><div class="snw"><div class="sn">4</div><div class="sl"></div></div><div class="sc2"><div class="stit">Withdraw Profit &amp; Modal</div><div class="sdsc"><strong style="color:var(--t1);">Profit</strong> dapat ditarik kapan saja tanpa batasan. <strong style="color:var(--t1);">Modal pokok</strong> dikunci selama 2 bulan, setelah itu bebas ditarik atau di-roll over.</div></div></div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sh"><span class="st">Keunggulan Platform</span></div>
+  <div class="fgrid">
+    <div class="fc"><div class="fi"><svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="#c9a227" stroke-width="1.3"/><path d="M5.5 8l2 2 3-3.5" stroke="#c9a227" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="ftit">Auto Compound</div><div class="fdsc">Bunga otomatis digabung ke modal setiap hari tanpa campur tangan.</div></div></div>
+    <div class="fc"><div class="fi"><svg viewBox="0 0 16 16" fill="none"><rect x="2.5" y="4.5" width="11" height="8" rx="1.5" stroke="#c9a227" stroke-width="1.3"/><path d="M5 4.5V3.5a3 3 0 016 0v1" stroke="#c9a227" stroke-width="1.3" stroke-linecap="round"/></svg></div><div><div class="ftit">Keamanan Tinggi</div><div class="fdsc">Smart contract teraudit, aset terlindungi oleh teknologi blockchain.</div></div></div>
+    <div class="fc"><div class="fi"><svg viewBox="0 0 16 16" fill="none"><path d="M8 2v4l2.5 2.5" stroke="#c9a227" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="8" cy="9" r="5.5" stroke="#c9a227" stroke-width="1.3"/></svg></div><div><div class="ftit">Passive Income 24/7</div><div class="fdsc">Platform berjalan non-stop. Bunga terus berjalan bahkan saat Anda tidur.</div></div></div>
+    <div class="fc"><div class="fi"><svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M10 5l3 3-3 3" stroke="#c9a227" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="ftit">Withdraw Fleksibel</div><div class="fdsc"><strong style="color:var(--t1);font-weight:500;">Profit</strong> bebas ditarik kapan saja. <strong style="color:var(--t1);font-weight:500;">Modal</strong> terkunci 2 bulan.</div></div></div>
+    <div class="fc"><div class="fi"><svg viewBox="0 0 16 16" fill="none"><circle cx="6" cy="6" r="3" stroke="#c9a227" stroke-width="1.3"/><circle cx="11" cy="11" r="3" stroke="#c9a227" stroke-width="1.3"/><path d="M8.5 3.5l-3 9" stroke="#c9a227" stroke-width="1" stroke-dasharray="1.5 1.5"/></svg></div><div><div class="ftit">Nilai USDT Stabil</div><div class="fdsc">USDT setara 1 dolar AS. Modal tidak tergerus volatilitas pasar.</div></div></div>
+    <div class="fc"><div class="fi"><svg viewBox="0 0 16 16" fill="none"><path d="M2 12L6 8l3 3 5-6" stroke="#c9a227" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="ftit">Return Terukur</div><div class="fdsc">Return 0.7%/hari yang konsisten. Proyeksi bisa dihitung sejak awal.</div></div></div>
+  </div>
+</div>
+
+<p class="disc">* Semua angka proyeksi bersifat ilustrasi berdasarkan rate 0.7%/hari dengan sistem auto compound dan dapat berubah sewaktu-waktu. Investasi selalu mengandung risiko. Hanya gunakan dana yang tidak mengganggu kebutuhan pokok Anda.</p>
+<div class="foot">NOAH NEXUS PROTOCOL &nbsp;·&nbsp; V2.0 &nbsp;·&nbsp; &copy; 2025</div>
+
+</div>
+
+<script type="text/javascript">
+// Base multiplier data (modal = 1)
+var BH=[[1,1.007,0.007,0.007],[2,1.014049,0.007049,0.014049],[3,1.021147343,0.007098343,0.021147343],[4,1.028295374401,0.007148031401,0.028295374401],[5,1.035493442021807,0.007198067620807,0.035493442021807],[6,1.0427418961159596,0.007248454094152649,0.04274189611595958],[7,1.0500410893887713,0.0072991932728117175,0.050041089388771276]];
+var BW=[[1,1.0500410893887708,0.05004108938877083,0.05004108938877083],[2,1.1025862894047562,0.052545200015985394,0.10258628940475623],[3,1.1577609084716924,0.055174619066936215,0.15776090847169244],[4,1.2156965255833487,0.05793561711165629,0.21569652558334873]];
+var BM=[[1.2414052769937678,0.2414052769937678,0.2414052769937678],[1.5091720820821577,0.2677668050883899,0.5091720820821577],[1.8734941865884622,0.36432210450630453,0.8734941865884622],[2.309598380981194,0.43610419439273174,1.309598380981194],[2.867147617886316,0.557549236905122,1.867147617886316],[3.5345503304510264,0.6674027125647104,2.5345503304510264],[4.3878094320219665,0.8532591015709401,3.3878094320219665],[5.447049783355097,1.0592403513331305,4.447049783355097],[6.714991405267904,1.267941621912807,5.714991405267904],[8.336025765467374,1.6210343601994701,7.336025765467374],[10.276451215895941,1.9404254504285667,9.276451215895941],[12.757240768182239,2.480789552286298,11.757240768182239]];
+
+function C(v) {
+  var s = (Math.round(v*100)/100).toFixed(2).split('.');
+  s[0] = s[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  return s.join('.');
+}
+
+function S(v) {
+  return v >= 1000 ? (Math.round(v/100)/10).toFixed(1)+'k' : Math.round(v)+'';
+}
+
+function T(id, val) {
+  var e = document.getElementById(id);
+  if (e) e.textContent = val;
+}
+
+function ST(tab, btn) {
+  var list = ['h','w','m'];
+  for (var i = 0; i < list.length; i++) {
+    var tc = document.getElementById('t-'+list[i]);
+    if (tc) tc.className = list[i]===tab ? 'tc on' : 'tc';
+  }
+  var btns = document.getElementsByClassName('tb');
+  for (var j = 0; j < btns.length; j++) {
+    btns[j].className = 'tb';
+  }
+  if (btn) btn.className = 'tb on';
+}
+
+function H() {
+  var el = document.getElementById('mi');
+  if (!el) return;
+  var M = parseFloat(el.value);
+  if (!M || M <= 0 || isNaN(M)) { alert('Masukkan modal yang valid!'); return; }
+
+  T('s0', C(M));
+
+  // Harian
+  for (var d = 0; d < BH.length; d++) {
+    var n = d + 1;
+    T('h'+n+'b', C(BH[d][1]*M));
+    T('h'+n+'i', C(BH[d][2]*M));
+    T('h'+n+'p', C(BH[d][3]*M));
+  }
+  T('hts', C(BH[6][1]*M));
+  T('htp', C(BH[6][3]*M));
+  T('s7',  C(BH[6][3]*M));
+
+  // Mingguan
+  for (var w = 0; w < BW.length; w++) {
+    var wn = w + 1;
+    T('w'+wn+'b', C(BW[w][1]*M));
+    T('w'+wn+'p', C(BW[w][2]*M));
+    T('w'+wn+'t', C(BW[w][3]*M));
+  }
+  T('wts', C(BW[3][1]*M));
+  T('wtp', C(BW[3][3]*M));
+
+  // Bulanan
+  for (var m = 0; m < BM.length; m++) {
+    T('m'+m+'b', C(BM[m][0]*M));
+    T('m'+m+'p', C(BM[m][1]*M));
+    T('m'+m+'t', C(BM[m][2]*M));
+  }
+  T('mts', C(BM[11][0]*M));
+  T('mtp', C(BM[11][2]*M));
+
+  // Bars
+  var mx = BM[11][0]*M;
+  var bv = [BM[0][0]*M, BM[2][0]*M, BM[5][0]*M, BM[11][0]*M];
+  var bi = ['bar1','bar3','bar6','bar12'];
+  for (var k = 0; k < 4; k++) {
+    var be = document.getElementById(bi[k]);
+    if (be) {
+      be.style.width = (bv[k]/mx*100).toFixed(1)+'%';
+      be.textContent = '$'+S(bv[k]);
+    }
+  }
+}
+
+// Jalankan langsung saat halaman load
+H();
+</script>
+</body>
+</html>
